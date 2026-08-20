@@ -1,0 +1,288 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', 'SF Pro Display', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Prevent auto-zoom on input focus on mobile */
+input,
+textarea,
+select {
+  font-size: 16px !important;
+}
+
+@media (min-width: 768px) {
+  input,
+  textarea,
+  select {
+    font-size: 14px !important;
+  }
+}
+
+/* Leaflet overrides */
+.leaflet-container {
+  height: 100vh;
+  width: 100%;
+  z-index: 0;
+}
+
+.leaflet-popup-content-wrapper {
+  border-radius: 12px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+}
+
+.leaflet-popup-content {
+  margin: 0;
+}
+
+/* Smooth transitions */
+* {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* Dark mode scrollbar */
+.dark ::-webkit-scrollbar-track {
+  background: #1f2937;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: #4b5563;
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: #6b7280;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.3s ease-out;
+}
+
+.animate-slideUp {
+  animation: slideUp 0.25s ease-in-out;
+}
+
+.animate-slideInRight {
+  animation: slideInRight 0.3s ease-out;
+}
+
+
+
+
+/* Google Maps controls styling */
+.gm-style-mtc {
+  background-color: transparent !important;
+  border: none !important;
+  border-radius: 8px !important;
+  display: none !important;
+}
+
+.gm-style-mtc button {
+  background-color: white !important;
+  border: 1px solid #e5e7eb !important;
+  border-radius: 6px !important;
+  padding: 6px 8px !important;
+  font-size: 12px !important;
+  margin: 2px !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+}
+
+.gm-style-mtc button:hover {
+  background-color: #f3f4f6 !important;
+  border-color: #d1d5db !important;
+}
+
+.dark .gm-style-mtc button {
+  background-color: #1f2937 !important;
+  border-color: #4b5563 !important;
+  color: #fff !important;
+}
+
+.dark .gm-style-mtc button:hover {
+  background-color: #374151 !important;
+  border-color: #6b7280 !important;
+}
+
+/* Mobile phone view - make navigation bigger, thicker with rounded edges */
+@media (max-width: 768px) {
+  nav {
+    left: 0 !important;
+    right: 0 !important;
+    top: 0 !important;
+    width: 100% !important;
+    max-width: none !important;
+    padding: 8px !important;
+    z-index: 999 !important;
+  }
+
+  nav > div {
+    width: 100% !important;
+    border-radius: 12px !important;
+    padding: 8px 8px !important;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15) !important;
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    gap: 6px !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    overflow: visible !important;
+  }
+
+  /* Property type button - left side - make it longer */
+  nav > div > div:nth-child(1) button {
+    padding: 10px 16px !important;
+    min-width: 100px !important;
+    background-color: #f3f4f6 !important;
+    border: 2px solid #e5e7eb !important;
+    color: #1f2937 !important;
+  }
+
+  nav > div > div:nth-child(1) {
+    flex: 0 0 auto !important;
+    margin: 0 !important;
+    position: relative !important;
+    z-index: 100 !important;
+  }
+
+  /* Price button - middle - make it longer */
+  nav > div > div:nth-child(2) button {
+    padding: 10px 16px !important;
+    min-width: 100px !important;
+    background-color: #f3f4f6 !important;
+    border: 2px solid #e5e7eb !important;
+    color: #1f2937 !important;
+  }
+
+  nav > div > div:nth-child(2) {
+    flex: 0 0 auto !important;
+    margin: 0 auto !important;
+    position: relative !important;
+    z-index: 100 !important;
+  }
+
+  /* Add property button - middle */
+  nav > div > button {
+    flex: 0 0 auto !important;
+    margin: 0 !important;
+    background-color: #3b82f6 !important;
+    border: 2px solid #2563eb !important;
+  }
+
+  /* User menu container - right side */
+  nav > div > div:last-child button {
+    background-color: #f3f4f6 !important;
+    border: 2px solid #e5e7eb !important;
+    color: #1f2937 !important;
+  }
+
+  nav > div > div:last-child {
+    flex: 0 0 auto !important;
+    margin: 0 !important;
+    margin-left: auto !important;
+    position: relative !important;
+    z-index: 100 !important;
+  }
+
+  /* Type dropdown - show above everything */
+  nav > div > div:nth-child(1) > div:nth-child(2) {
+    position: fixed !important;
+    left: 12px !important;
+    right: 12px !important;
+    width: auto !important;
+    max-width: calc(100% - 24px) !important;
+    top: 90px !important;
+    z-index: 1001 !important;
+  }
+
+  /* Fix price dropdown for mobile - keep it within screen */
+  nav > div > div:nth-child(2) > div:nth-child(2) {
+    position: fixed !important;
+    left: 12px !important;
+    right: 12px !important;
+    width: auto !important;
+    max-width: calc(100% - 24px) !important;
+    top: 90px !important;
+    z-index: 1001 !important;
+  }
+
+  /* User menu dropdown */
+  nav > div > div:last-child > div:nth-child(2) {
+    position: fixed !important;
+    left: 12px !important;
+    right: 12px !important;
+    width: auto !important;
+    max-width: calc(100% - 24px) !important;
+    top: 90px !important;
+    z-index: 1001 !important;
+  }
+}
+
+
+/* Fix user button position - prevent it from moving */
+@media (min-width: 769px) {
+  nav > div > div:last-child {
+    flex-shrink: 0 !important;
+    order: 10 !important;
+    margin-left: auto !important;
+    position: relative !important;
+  }
+}
