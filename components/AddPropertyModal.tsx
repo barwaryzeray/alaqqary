@@ -204,6 +204,7 @@ export default function AddPropertyModal({
                   <div className="grid grid-cols-2 gap-3">
                     {images.map((src, i) => (
                       <div key={i} className="relative aspect-video rounded-xl overflow-hidden">
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
                         <img src={src} alt="" className="w-full h-full object-cover" />
                         <button onClick={() => setImages((prev) => prev.filter((_, idx) => idx !== i))}
                           className="absolute top-2 right-2 p-1.5 bg-danger rounded-full hover:bg-red-600 transition-colors">

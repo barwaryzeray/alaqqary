@@ -89,6 +89,7 @@ export default function Map({ properties }: MapProps) {
     setSelectedMarker(null);
   }, []);
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const handleMapLoad = useCallback((mapInstance: google.maps.Map) => {
     mapRef.current = mapInstance;
     // Center to the desired region only on initial load

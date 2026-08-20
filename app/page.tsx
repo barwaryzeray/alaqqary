@@ -31,6 +31,7 @@ function MainContent() {
     setProperties(props);
   };
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => { refresh(); }, []);
 
   const filtered = useMemo(() => filterProperties(properties, filters), [properties, filters]);

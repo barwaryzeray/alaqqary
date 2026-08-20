@@ -392,6 +392,7 @@ function PropertyRow({
       <div className="flex gap-3">
         <div className="w-20 h-20 rounded-lg overflow-hidden flex-shrink-0 bg-gray-200 dark:bg-gray-600">
           {property.images?.[0] && (
+            {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src={property.images[0]} alt="" className="w-full h-full object-cover" />
           )}
         </div>
@@ -471,6 +472,7 @@ function PropertyPreviewModal({ property, onClose }: { property: Property; onClo
           {property.images?.length > 0 && (
             <div className="grid grid-cols-2 gap-2">
               {property.images.slice(0, 4).map((img, i) => (
+                {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img key={i} src={img} alt="" className="w-full h-36 object-cover rounded-lg" />
               ))}
             </div>
