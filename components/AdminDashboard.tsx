@@ -6,7 +6,7 @@ import {
   Clock, CheckCircle, AlertCircle, Users, Home,
   Shield, LogOut, Edit2
 } from "lucide-react";
-import { Property, AuthSession } from "@/types/property";
+import { Property, AuthSession, PropertyType } from "@/types/property";
 import {
   loadPendingProperties, loadAllProperties,
   approveProperty, rejectProperty, deleteProperty,
@@ -640,7 +640,7 @@ function PropertyEditModal({
               </label>
               <select
                 value={formData.type}
-                onChange={(e) => setFormData({ ...formData, type: e.target.value })}
+                onChange={(e) => setFormData({ ...formData, type: e.target.value as PropertyType })}
                 className={inputClass}
               >
                 {["Apartment", "House", "Villa", "Land", "Commercial", "Office"].map((t) => (

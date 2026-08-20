@@ -1,4 +1,4 @@
-import { Property } from "@/types/property";
+import { Property, PropertyType } from "@/types/property";
 import { supabase } from "./supabase";
 
 // ============================================================================
