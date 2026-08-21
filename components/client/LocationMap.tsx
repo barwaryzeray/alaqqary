@@ -87,7 +87,12 @@ export default function LocationMap({ location, onPick }: LocationMapProps) {
             fullscreenControl: true,
             mapTypeControl: true,
             zoomControl: true,
-            mapTypeId: "hybrid",
+            mapTypeId: "roadmap",
+            clickableIcons: false,
+            tilt: 0,
+            heading: 0,
+            maxZoom: 18,
+            minZoom: 8,
           }}
         >
           <MarkerF

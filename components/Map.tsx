@@ -18,8 +18,13 @@ const options = {
   fullscreenControl: true,
   streetViewControl: false,    // Hide street view button
   mapTypeControl: false,       // Hide map/satellite buttons
-  mapTypeId: "hybrid" as const,
+  mapTypeId: "roadmap" as const, // Changed from hybrid to roadmap for faster loading
   gestureHandling: "greedy" as const, // Allow single finger drag on mobile
+  tilt: 0, // Disable tilt
+  heading: 0, // Set fixed heading
+  clickableIcons: false, // Disable POI clicks for better performance
+  maxZoom: 18,
+  minZoom: 8,
 };
 
 interface MapProps {
@@ -41,19 +46,11 @@ export default function Map({ properties }: MapProps) {
   };
 
   // Custom SVG icon for property listings - Google Maps pin style
-  const getPropertyIcon = (featured: boolean) => {
-    // Using a simple blue pin SVG
-    const svgMarker = `
-      <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
-        <path d="M16 0C9.4 0 4 5.4 4 12c0 9 12 20 12 20s12-11 12-20c0-6.6-5.4-12-12-12z" fill="rgb(37, 99, 235)"/>
-        <circle cx="16" cy="12" r="5" fill="white"/>
-      </svg>`;
-    
-    return {
-      url: "data:image/svg+xml;base64," + btoa(svgMarker),
-      scaledSize: new google.maps.Size(32, 32),
-      anchor: new google.maps.Point(16, 32),
-    };
+  // Memoized to prevent recreation
+  const propertyIcon = {
+    url: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiIgdmlld0JveD0iMCAwIDMyIDMyIj48cGF0aCBkPSJNMTYgMEM5LjQgMCA0IDUuNCA0IDEyYzAgOSAxMiAyMCAxMiAyMHMxMi0xMSAxMi0yMGMwLTYuNi01LjQtMTItMTItMTJ6IiBmaWxsPSJyZ2IoMzcsCjk5LDIzNSkiLz48Y2lyY2xlIGN4PSIxNiIgY3k9IjEyIiByPSI1IiBmaWxsPSJ3aGl0ZSIvPjwvc3ZnPg==",
+    scaledSize: new google.maps.Size(32, 32),
+    anchor: new google.maps.Point(16, 32),
   };
 
   useEffect(() => {
@@ -183,7 +180,7 @@ export default function Map({ properties }: MapProps) {
                 lng: property.location.coordinates.lng,
               }}
               title={property.title}
-              icon={getPropertyIcon(property.featured || false)}
+              icon={propertyIcon}
               onClick={() => handleMarkerClick(property)}
             >
               {selectedMarker === property.id && (
