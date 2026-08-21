@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { GoogleMap, LoadScript, MarkerF } from "@react-google-maps/api";
-import { DUHOK_CENTER } from "@/data/properties";
+import { DUHOK_CENTER } from "@/data/properties"; import { ENV } from "@/utils/config";
 
 interface LocationMapProps {
   location: { lat: number; lng: number } | null;
@@ -19,7 +19,7 @@ export default function LocationMap({ location, onPick }: LocationMapProps) {
   const [lat, setLat] = useState<number>(location?.lat ?? DUHOK_CENTER.lat);
   const [lng, setLng] = useState<number>(location?.lng ?? DUHOK_CENTER.lng);
   const [mapRef, setMapRef] = useState<google.maps.Map | null>(null);
-  const apiKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
+  const apiKey = ENV.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
 
   useEffect(() => {
     setMounted(true);
@@ -154,3 +154,4 @@ export default function LocationMap({ location, onPick }: LocationMapProps) {
     </div>
   );
 }
+

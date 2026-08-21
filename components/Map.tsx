@@ -5,7 +5,7 @@ import { GoogleMap, LoadScript, MarkerF, InfoWindowF } from "@react-google-maps/
 import { Property } from "@/types/property";
 import { DUHOK_CENTER } from "@/data/properties";
 import { useApp } from "@/context/AppContext";
-import PropertyPreviewCard from "./PropertyPreviewCard";
+import PropertyPreviewCard from "./PropertyPreviewCard"; import { ENV } from "@/utils/config";
 
 const mapContainerStyle = {
   width: "100%",
@@ -33,7 +33,7 @@ export default function Map({ properties }: MapProps) {
   const [mapError, setMapError] = useState<string | null>(null);
   const mapRef = useRef<google.maps.Map | null>(null);
   const isInitialLoadRef = useRef(true);
-  const apiKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
+  const apiKey = ENV.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
 
   const center = {
     lat: DUHOK_CENTER.lat,
@@ -200,3 +200,4 @@ export default function Map({ properties }: MapProps) {
     </div>
   );
 }
+
