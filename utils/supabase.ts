@@ -3,27 +3,12 @@ import { createClient } from '@supabase/supabase-js';
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
 const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 
-// Only throw error in production/runtime, not during build
+// Warn if Supabase is not configured, but don't throw during build
 if (!supabaseUrl || !supabaseAnonKey) {
-  if (process.env.NODE_ENV === 'production' && !process.env.VERCEL_ENV) {
-    console.error('=============================================================');
-    console.error('❌ SUPABASE NOT CONFIGURED');
-    console.error('=============================================================');
-    console.error('Your app is configured to use Supabase only (no localStorage).');
-    console.error('Please set up your Supabase database and add the following to');
-    console.error('your .env.local file:');
-    console.error('');
-    console.error('NEXT_PUBLIC_SUPABASE_URL=https://your-project.supabase.co');
-    console.error('NEXT_PUBLIC_SUPABASE_ANON_KEY=your-anon-key-here');
-    console.error('');
-    console.error('See SUPABASE_SETUP.md for complete setup instructions.');
-    console.error('=============================================================');
-    
-    throw new Error(
-      'Supabase is not configured. Please set NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_ANON_KEY in your .env.local file. See SUPABASE_SETUP.md for instructions.'
-    );
-  }
-  console.warn('⚠️  Supabase environment variables not set - using dummy values for build');
+  console.warn('⚠️  Supabase environment variables not set - using placeholder values');
+  console.warn('   This is OK during build, but you need to set these variables for runtime:');
+  console.warn('   - NEXT_PUBLIC_SUPABASE_URL');
+  console.warn('   - NEXT_PUBLIC_SUPABASE_ANON_KEY');
 }
 
 export const supabase = createClient(
