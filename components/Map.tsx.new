@@ -1,0 +1,9 @@
+"use client";
+
+import { useEffect, useState, useCallback, useRef } from "react";
+import { GoogleMap, LoadScript, MarkerF, InfoWindowF } from "@react-google-maps/api";
+import { Property } from "@/types/property";
+import { DUHOK_CENTER } from "@/data/properties";
+import { useApp } from "@/context/AppContext";
+import { ENV } from "@/utils/config";
+import PropertyPreviewCard from "./PropertyPreviewCard";
