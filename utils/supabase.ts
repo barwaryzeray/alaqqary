@@ -1,20 +1,10 @@
 import { createClient } from '@supabase/supabase-js';
+import { ENV } from './config';
 
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
-const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+const supabaseUrl = ENV.NEXT_PUBLIC_SUPABASE_URL;
+const supabaseAnonKey = ENV.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 
-// Warn if Supabase is not configured, but don't throw during build
-if (!supabaseUrl || !supabaseAnonKey) {
-  console.warn('⚠️  Supabase environment variables not set - using placeholder values');
-  console.warn('   This is OK during build, but you need to set these variables for runtime:');
-  console.warn('   - NEXT_PUBLIC_SUPABASE_URL');
-  console.warn('   - NEXT_PUBLIC_SUPABASE_ANON_KEY');
-}
-
-export const supabase = createClient(
-  supabaseUrl || 'https://dummy.supabase.co',
-  supabaseAnonKey || 'dummy-key'
-);
+export const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
 // Database types
 export interface Profile {
