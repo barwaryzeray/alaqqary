@@ -18,7 +18,7 @@ const options = {
   fullscreenControl: true,
   streetViewControl: false,    // Hide street view button
   mapTypeControl: false,       // Hide map/satellite buttons
-  mapTypeId: "roadmap" as const, // Changed from hybrid to roadmap for faster loading
+  mapTypeId: "satellite" as const, // Satellite map view
   gestureHandling: "greedy" as const, // Allow single finger drag on mobile
 };
 

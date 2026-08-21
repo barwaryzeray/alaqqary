@@ -87,7 +87,7 @@ export default function LocationMap({ location, onPick }: LocationMapProps) {
             fullscreenControl: true,
             mapTypeControl: true,
             zoomControl: true,
-            mapTypeId: "roadmap",
+            mapTypeId: "satellite",
           }}
         >
           <MarkerF
