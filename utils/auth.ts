@@ -400,14 +400,25 @@ async function getProfileById(userId: string): Promise<any> {
   }
 }
 
-function createSession(user: any, profile: any, expiresAt: string): AuthSession {
+function createSession(user: any, profile: any, expiresAt: string | number | undefined): AuthSession {
+  let expiresAtMs = Date.now() + 24 * 60 * 60 * 1000; // Default to 24 hours from now
+  
+  if (expiresAt) {
+    if (typeof expiresAt === 'number') {
+      // If it's already a number (milliseconds or seconds)
+      expiresAtMs = expiresAt > 1000000000000 ? expiresAt : expiresAt * 1000;
+    } else if (typeof expiresAt === 'string') {
+      expiresAtMs = new Date(expiresAt).getTime();
+    }
+  }
+  
   return {
     userId: user.id,
     username: profile.username,
     role: profile.role,
     name: profile.full_name,
     isLoggedIn: true,
-    expiresAt: new Date(expiresAt).getTime(),
+    expiresAt: expiresAtMs,
   };
 }
 
@@ -423,13 +434,22 @@ export async function getCurrentSession(): Promise<AuthSession | null> {
         .single();
 
       if (profile) {
+        let expiresAtMs = Date.now() + 24 * 60 * 60 * 1000; // Default to 24 hours
+        if (session.expires_at) {
+          if (typeof session.expires_at === 'number') {
+            expiresAtMs = session.expires_at > 1000000000000 ? session.expires_at : session.expires_at * 1000;
+          } else if (typeof session.expires_at === 'string') {
+            expiresAtMs = new Date(session.expires_at).getTime();
+          }
+        }
+        
         const authSession = {
           userId: session.user.id,
           username: profile.username,
           role: profile.role,
           name: profile.full_name,
           isLoggedIn: true,
-          expiresAt: new Date(session.expires_at).getTime(),
+          expiresAt: expiresAtMs,
         };
         saveSessionToStorage(authSession);
         return authSession;

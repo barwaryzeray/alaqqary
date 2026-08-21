@@ -474,10 +474,10 @@ function PropertyPreviewModal({ property, onClose }: { property: Property; onClo
           {property.images?.length > 0 && (
             <div className="grid grid-cols-2 gap-2">
               {property.images.slice(0, 4).map((img, i) => (
-                <React.Fragment key={i}>
+                <div key={i}>
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img src={img} alt="" className="w-full h-36 object-cover rounded-lg" />
-                </React.Fragment>
+                </div>
               ))}
             </div>
           )}

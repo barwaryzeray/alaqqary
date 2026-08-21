@@ -21,9 +21,9 @@ export function filterProperties(
     // Filter by location search
     if (filters.searchLocation && filters.searchLocation.trim()) {
       const searchTerm = filters.searchLocation.toLowerCase();
-      const matchesDistrict = property.district.toLowerCase().includes(searchTerm);
-      const matchesAddress = property.address.toLowerCase().includes(searchTerm);
-      const matchesTitle = property.title.toLowerCase().includes(searchTerm);
+      const matchesDistrict = property.district?.toLowerCase().includes(searchTerm) ?? false;
+      const matchesAddress = property.address?.toLowerCase().includes(searchTerm) ?? false;
+      const matchesTitle = property.title?.toLowerCase().includes(searchTerm) ?? false;
       
       if (!matchesDistrict && !matchesAddress && !matchesTitle) {
         return false;

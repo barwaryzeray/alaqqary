@@ -47,6 +47,7 @@ function mapDbPropertyToProperty(dbProp: any): Property {
     seller: {
       name: dbProp.seller_name,
       phone: dbProp.seller_phone,
+      whatsapp: dbProp.seller_whatsapp || dbProp.seller_phone || "",
       email: dbProp.seller_email,
     },
     status: dbProp.status,
@@ -72,6 +73,7 @@ function mapPropertyToDbProperty(property: Property): any {
     images: property.images,
     seller_name: property.seller.name,
     seller_phone: property.seller.phone,
+    seller_whatsapp: property.seller.whatsapp,
     seller_email: property.seller.email,
     status: property.status || "pending",
     submitted_by: property.submittedBy,
